@@ -22,8 +22,23 @@ app.controller('mapCtrl', function() {
 
 });
 
-app.controller('usersCtrl', function() {
+app.controller('usersCtrl', function($scope, $http) {
+   $scope.insertdata=function() {
+      $http.post("php/insert.php", {'vorname':$scope.vorname, 'nachname':$scope.nachname, 'enabled':$scope.enabled});
 
+      document.getElementById('vorname').value = "";
+      document.getElementById('nachname').value = "";
+      document.getElementById('enabled').value = "";
+
+      $scope.displayUser();
+   }
+
+   $scope.displayUser=function() {
+      $http.get("php/select.php")
+      .success(function(data) {
+         $scope.data=data;
+      });
+   }
 });
 
 app.controller('reportsCtrl', function() {
