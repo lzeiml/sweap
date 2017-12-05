@@ -19,7 +19,7 @@
                <td><input type="text" ng-model="enabled" name="enabled" id="enabled"></td>
             </tr>
             <tr>
-               <td><input type="button" value="Einfügen" ng-click="insertdata()" class="btn btn-dark"/></td>
+               <td><button class="btn btn-success" ng-click="insertdata();"><span class="glyphicon glyphicon-ok"></span> Einfügen</button></td>
             </tr>
          </table>
       </form>
@@ -34,6 +34,7 @@
                <th scope="col" style="text-align:center;">Vorname</th>
                <th scope="col" style="text-align:center;">Nachname</th>
                <th scope="col" style="text-align:center;">enabled</th>
+               <th/>
             </tr>
          </thead>
          <tbody>
@@ -42,6 +43,7 @@
                <td style="text-align:center;">{{user.Vorname}}</td>
                <td style="text-align:center;">{{user.Nachname}}</td>
                <td style="text-align:center;">{{user.enabled}}</td>
+               <td style="text-align:center;"><button class="btn btn-danger" ng-click="deleteUser(user.UserID);"><span class="glyphicon glyphicon-remove"></span> Löschen</button></td>
             </tr>
          </tbody>
       </table>

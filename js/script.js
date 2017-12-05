@@ -23,6 +23,7 @@ app.controller('mapCtrl', function() {
 });
 
 app.controller('usersCtrl', function($scope, $http) {
+   // User einfügen
    $scope.insertdata=function() {
       $http.post("php/insert.php", {'vorname':$scope.vorname, 'nachname':$scope.nachname, 'enabled':$scope.enabled});
 
@@ -33,14 +34,21 @@ app.controller('usersCtrl', function($scope, $http) {
       $scope.displayUser();
    }
 
+   // User anzeigen
    $scope.displayUser=function() {
       $http.get("php/select.php")
       .then(function(response) {
          $scope.data=response.data;
       });
    }
-
    $scope.displayUser();
+
+   // User löschen
+   $scope.deleteUser=function(UserID) {
+      $http.post("php/delete.php", {'id':UserID});
+
+      $scope.displayUser();
+   }
 });
 
 app.controller('reportsCtrl', function() {
