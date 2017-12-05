@@ -35,10 +35,12 @@ app.controller('usersCtrl', function($scope, $http) {
 
    $scope.displayUser=function() {
       $http.get("php/select.php")
-      .success(function(data) {
-         $scope.data=data;
+      .then(function(response) {
+         $scope.data=response.data;
       });
    }
+
+   $scope.displayUser();
 });
 
 app.controller('reportsCtrl', function() {

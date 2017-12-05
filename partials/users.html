@@ -1,40 +1,50 @@
 <h1>Benutzer</h1>
 
-<form>
-   <table style="border-collapse:separate;border-spacing:5px;">
-      <tr>
-         <td>Vorname</td>
-         <td><input type="text" ng-model="vorname" name="vorname" id="vorname"></td>
-      </tr>
-      <tr>
-         <td>Nachname&nbsp;</td>
-         <td><input type="text" ng-model="nachname" name="nachname" id="nachname"></td>
-      </tr>
-      <tr>
-         <td>enabled</td>
-         <td><input type="text" ng-model="enabled" name="enabled" id="enabled"></td>
-      </tr>
-      <tr>
-         <td><input type="button" value="Einfügen" ng-click="insertdata()" class="btn btn-dark"/></td>
-      </tr>
-   </table>
+<table style="border-collapse:separate;border-spacing:5px;width:60%;">
+<tr>
+   <td style="vertical-align:top;" width="30%">
+      <!-- Neuen user einfügen -->
+      <form>
+         <table style="border-collapse:separate;border-spacing:5px;">
+            <tr>
+               <td>Vorname</td>
+               <td><input type="text" ng-model="vorname" name="vorname" id="vorname"></td>
+            </tr>
+            <tr>
+               <td>Nachname&nbsp;</td>
+               <td><input type="text" ng-model="nachname" name="nachname" id="nachname"></td>
+            </tr>
+            <tr>
+               <td>enabled</td>
+               <td><input type="text" ng-model="enabled" name="enabled" id="enabled"></td>
+            </tr>
+            <tr>
+               <td><input type="button" value="Einfügen" ng-click="insertdata()" class="btn btn-dark"/></td>
+            </tr>
+         </table>
+      </form>
+   </td>
 
-   <table>
-      <thead>
-         <tr>
-            <th>ID</th>
-            <th>Vorname</th>
-            <th>Nachname</th>
-            <th>enabled</th>
-         </tr>
-      </thead>
-      <tbody>
-         <tr ng-repeat="user in data">
-            <td>{{user.UserID}}</td>
-            <td>{{user.Vorname}}</td>
-            <td>{{user.Nachname}}</td>
-            <td>{{user.enabled}}</td>
-         </tr>
-      </tbody>
-   </table>
-</form>
+   <td width="70%">
+      <!-- User anzeigen -->
+      <table class="table table-hover">
+         <thead>
+            <tr>
+               <th scope="col" style="text-align:center;">ID</th>
+               <th scope="col" style="text-align:center;">Vorname</th>
+               <th scope="col" style="text-align:center;">Nachname</th>
+               <th scope="col" style="text-align:center;">enabled</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr ng-repeat="user in data">
+               <td style="text-align:center;">{{user.UserID}}</td>
+               <td style="text-align:center;">{{user.Vorname}}</td>
+               <td style="text-align:center;">{{user.Nachname}}</td>
+               <td style="text-align:center;">{{user.enabled}}</td>
+            </tr>
+         </tbody>
+      </table>
+   </td>
+</tr>
+</table>

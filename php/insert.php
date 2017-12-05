@@ -8,6 +8,5 @@
 
    $query="INSERT INTO user (Vorname, Nachname, enabled)
            VALUES ('$vorname', '$nachname', '$enabled')";
-
    $dbhandle->query($query);
 ?>
