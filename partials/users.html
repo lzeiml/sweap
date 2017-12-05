@@ -43,7 +43,10 @@
                <td style="text-align:center;">{{user.Vorname}}</td>
                <td style="text-align:center;">{{user.Nachname}}</td>
                <td style="text-align:center;">{{user.enabled}}</td>
-               <td style="text-align:center;"><button class="btn btn-danger" ng-click="deleteUser(user.UserID);"><span class="glyphicon glyphicon-remove"></span> Löschen</button></td>
+               <td style="text-align:center;" width="30%">
+                  <button class="btn btn-warning" ng-click=""><span class="glyphicon glyphicon-edit"></span> Ändern</button>
+                  <button class="btn btn-danger" ng-click="deleteUser(user.UserID);"><span class="glyphicon glyphicon-remove"></span> Löschen</button>
+               </td>
             </tr>
          </tbody>
       </table>

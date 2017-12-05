@@ -9,7 +9,7 @@ app.config(function($routeProvider) {
       .when('/reports', {templateUrl: 'partials/reports.html', controller: 'reportsCtrl'})
 });
 
-// Controllers
+// Controller
 app.controller('mainController', function() {
 
 });
@@ -44,13 +44,19 @@ app.controller('usersCtrl', function($scope, $http) {
    $scope.displayUser();
 
    // User löschen
-   $scope.deleteUser=function(UserID) {
-      $http.post("php/delete.php", {'id':UserID});
-
-      $scope.displayUser();
+   $scope.deleteUser=async function(UserID) {
+      $http.post("php/delete.php", {'id':UserID})
+      .then(function() {
+         $scope.displayUser();
+      });    
    }
 });
 
 app.controller('reportsCtrl', function() {
 
 });
+
+// Funktionen
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
