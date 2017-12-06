@@ -2,7 +2,7 @@
 
 <table style="border-collapse:separate;border-spacing:5px;width:60%;">
 <tr>
-   <td style="vertical-align:top;" width="30%">
+   <td style="vertical-align:top;" width="15%">
       <!-- Neuen user einfügen -->
       <form>
          <table style="border-collapse:separate;border-spacing:5px;">
@@ -44,7 +44,7 @@
                <td style="text-align:center;">{{user.Nachname}}</td>
                <td style="text-align:center;">{{user.enabled}}</td>
                <td style="text-align:center;" width="30%">
-                  <button class="btn btn-warning" ng-click=""><span class="glyphicon glyphicon-edit"></span> Ändern</button>
+                  <button class="btn btn-warning" ng-click="hideForm(false); editUser(user.UserID, user.Vorname, user.Nachname, user.enabled)"><span class="glyphicon glyphicon-edit"></span> Ändern</button>
                   <button class="btn btn-danger" ng-click="deleteUser(user.UserID);"><span class="glyphicon glyphicon-remove"></span> Löschen</button>
                </td>
             </tr>
@@ -53,3 +53,31 @@
    </td>
 </tr>
 </table>
+
+<div id="editForm">
+   <form style="position:fixed;top:14%;right:20%;">
+      <table style="border-collapse:separate;border-spacing:5px;">
+         <tr>
+            <td>Vorname</td>
+            <td><input type="text" ng-model="vorname" name="vorname" id="vorname"></td>
+         </tr>
+         <tr>
+            <td>Nachname&nbsp;</td>
+            <td><input type="text" ng-model="nachname" name="nachname" id="nachname"></td>
+         </tr>
+         <tr>
+            <td>enabled</td>
+            <td><input type="text" ng-model="enabled" name="enabled" id="enabled"></td>
+         </tr>
+         <tr>
+            <td><button class="btn btn-warning" ng-click="hideForm(true)"><span class="glyphicon glyphicon-floppy-saved"></span> Speichern</button></td>
+         </tr>
+      </table>
+   </form>
+</div>
+
+<!-- Popup
+<div ng-controller="popupCtrl">
+   <h2 class="text-center">Popup</h2>
+   <button ng-click="open()">popup test</button>
+</div>-->

@@ -1,6 +1,7 @@
 // Module
 var app = angular.module('app', ['ngRoute']);
 
+// Router
 app.config(function($routeProvider) {
    $routeProvider
       .when('/', {templateUrl: 'partials/home.html', controller: 'homeCtrl'})
@@ -9,29 +10,34 @@ app.config(function($routeProvider) {
       .when('/reports', {templateUrl: 'partials/reports.html', controller: 'reportsCtrl'})
 });
 
-// Controller
+// Controller ------------------------------------------------------------------
+// Hauptcontroller (index)
 app.controller('mainController', function() {
 
 });
 
+// Menüpunkt Home
 app.controller('homeCtrl', function() {
 
 });
 
+// Menüpunkt Karte
 app.controller('mapCtrl', function() {
 
 });
 
+// Menüppunkt Benutzer
 app.controller('usersCtrl', function($scope, $http) {
    // User einfügen
    $scope.insertdata=function() {
-      $http.post("php/insert.php", {'vorname':$scope.vorname, 'nachname':$scope.nachname, 'enabled':$scope.enabled});
+      $http.post("php/insert.php", {'vorname':$scope.vorname, 'nachname':$scope.nachname, 'enabled':$scope.enabled})
+      .then(function() {
+         document.getElementById('vorname').value = "";
+         document.getElementById('nachname').value = "";
+         document.getElementById('enabled').value = "";
 
-      document.getElementById('vorname').value = "";
-      document.getElementById('nachname').value = "";
-      document.getElementById('enabled').value = "";
-
-      $scope.displayUser();
+         $scope.displayUser();
+      })
    }
 
    // User anzeigen
@@ -48,15 +54,33 @@ app.controller('usersCtrl', function($scope, $http) {
       $http.post("php/delete.php", {'id':UserID})
       .then(function() {
          $scope.displayUser();
-      });    
+      });
    }
+
+   // User ändern
+   $scope.editUser=function(UserID, Vorname, Nachname, enabled, buttontype) {
+
+   }
+
+   // Änderungsformular anzeigen/verstecken
+   $scope.hideForm=function(hide) {
+      var form = document.getElementById("editForm");
+
+      if (hide == true) {
+         form.style.display = "none";
+      } else {
+         form.style.display = "block";
+      }
+   }
+   $scope.hideForm(true);
 });
 
+// Menüpunkt Meldungen
 app.controller('reportsCtrl', function() {
 
 });
 
-// Funktionen
+// Funktionen ------------------------------------------------------------------
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
