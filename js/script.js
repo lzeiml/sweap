@@ -1,5 +1,5 @@
 // Module
-var app = angular.module('app', ['ngRoute']);
+var app = angular.module('app', ['ngRoute', 'uiGmapgoogle-maps']);
 
 // Router
 app.config(function($routeProvider) {
@@ -22,8 +22,17 @@ app.controller('homeCtrl', function() {
 });
 
 // Menüpunkt Karte
-app.controller('mapCtrl', function() {
+app.controller('mapCtrl', function($scope, $http) {
+   $scope.map = { center: { latitude: 47.5162, longitude: 14.5501 }, zoom: 7 };
 
+   // Marker anzeigen
+   $scope.displayMarkers=function() {
+      $http.get("php/mapcoordinatesSelect.php")
+      .then(function(response) {
+         $scope.data=response.data;
+      });
+   }
+   $scope.displayMarkers();
 });
 
 // Menüppunkt Benutzer
@@ -58,12 +67,16 @@ app.controller('usersCtrl', function($scope, $http) {
    }
 
    // User ändern
-   $scope.editUser=function(UserID, Vorname, Nachname, enabled, buttontype) {
-
+   $scope.fillEditForm=function(UserID, Vorname, Nachname, enabled) {
+      // Formular mit Werten des Benutzers befüllen
+      $scope.editID=UserID;
+      $scope.editVorname=Vorname;
+      $scope.editNachname=Nachname;
+      $scope.editEnabled=enabled;
    }
 
    // Änderungsformular anzeigen/verstecken
-   $scope.hideForm=function(hide) {
+   $scope.hideEditForm=function(hide) {
       var form = document.getElementById("editForm");
 
       if (hide == true) {
@@ -72,7 +85,14 @@ app.controller('usersCtrl', function($scope, $http) {
          form.style.display = "block";
       }
    }
-   $scope.hideForm(true);
+   $scope.hideEditForm(true);
+
+   $scope.saveUser=function() {
+      $http.post("php/update.php", {'id':$scope.editID, 'vorname':$scope.editVorname, 'nachname':$scope.editNachname, 'enabled':$scope.editEnabled})
+      .then(function () {
+         $scope.displayUser();
+      });
+   }
 });
 
 // Menüpunkt Meldungen
