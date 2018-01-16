@@ -23,7 +23,7 @@ app.controller('homeCtrl', function() {
 
 // Menüpunkt Karte
 app.controller('mapCtrl', function($scope, $http) {
-   $scope.map = { center: { latitude: 47.5162, longitude: 14.5501 }, zoom: 7 };
+   $scope.map = { center: { latitude: 47.7, longitude: 13.5 }, zoom: 8 };
 
    // Marker anzeigen
    $scope.displayMarkers=function() {
